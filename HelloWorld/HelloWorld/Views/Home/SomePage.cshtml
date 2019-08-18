@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SomePage</title>
+</head>
+<body>
+    <div> 
+        @{ 
+            string str = TempData.Peek("t1").ToString(); /*Condition 4*/
+        }
+        @str;
+
+        @TempData["t1"] @*Condition 2*@
+        @{
+            TempData.Keep("t1"); /*with Condition 2 and: its Condition 3*/
+        }
+    </div>
+</body>
+</html>

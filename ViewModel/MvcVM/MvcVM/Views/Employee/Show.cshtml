@@ -1,0 +1,52 @@
+﻿@*@model MvcVM.Models.Employee*@
+@model MvcVM.Models.EmployeeVM
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Show</title>
+</head>
+<body>
+    @*@{
+            MvcVM.Models.User CurrentUser = ViewBag.CurrentUser;
+        }*@
+    @*<div style="text-align:right">Welcome <u>@CurrentUser.UserName</u></div>*@
+    <div style="text-align:right">Welcome <u>@Model.user.UserName</u></div>
+    <div>
+        Employee Detail<br />
+        @*Employee Name : @Model.EmployeeName<br />*@
+        Employee Name : @Model.emp.EmployeeName<br />
+        @*Address : @Model.Address<br />*@
+        Address : @Model.emp.Address<br />
+        Age : @Model.Age
+        @*Data Transformation Logic*@
+        @*@{
+            int age = DateTime.Now.Year - Model.DateOfBirth.Year;
+            if (Model.DateOfBirth > DateTime.Now.AddYears(-age)
+                        {
+                age--;
+            }
+            @age
+        }*@
+
+
+        <br />
+        @*@{
+            if (Model.Salary > 20000)
+            {
+                <span style="color:red">Salary : @Model.Salary</span>
+            }
+            else
+            {
+                <span style="color:green">Salary : @Model.Salary</span>
+            }
+        }*@
+        <span style="color:@Model.SalaryColor">Salary : @Model.emp.Salary</span>
+    </div>
+</body>
+</html>
