@@ -1,0 +1,23 @@
+﻿@*DisplayCustomers is a partial view which helps to resuse a code again and again*@
+@model HelloWorld.ViewModel.CustomerViewModel
+@*@using HelloWorld.Models;*@
+@*<table>
+    <tr>
+        <td>Customer Code</td>
+        <td>Customer Name</td>
+    </tr>
+    @*Now Model or ViewModel has two kinds of objects inside it: 1) customer 2) customers collections *@
+@*to display the grid*@
+@*@foreach (Customer o in Model.customers)
+    {
+        <tr>
+            <td>@o.CustomerCode</td>
+            <td>@o.CustomerName</td>
+        </tr>
+    }*@
+@*</table>*@*
+@{
+    //WebGrid is like datagrid which is a functionality provided by Micorsoft to display data
+    WebGrid objGrid = new WebGrid(Model.customers);
+}
+@objGrid.GetHtml();

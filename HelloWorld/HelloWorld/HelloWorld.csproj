@@ -163,6 +163,7 @@
     </Compile>
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\CustomerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -201,6 +202,8 @@
     <Content Include="Views\Customer\Customer.cshtml" />
     <Content Include="Views\Customer\EnterCustomer.cshtml" />
     <Content Include="Views\Home\SomePage.cshtml" />
+    <Content Include="Views\Customer\SearchCustomer.cshtml" />
+    <Content Include="Views\Customer\DisplayCustomers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

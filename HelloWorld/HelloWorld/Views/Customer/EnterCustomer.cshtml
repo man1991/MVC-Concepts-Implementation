@@ -1,4 +1,6 @@
-﻿@model HelloWorld.Models.Customer 
+﻿@*@model HelloWorld.Models.Customer*@ @*This view is pointed towards Customer class and it was created as strongly typed view*@
+@model HelloWorld.ViewModel.CustomerViewModel
+@*@using HelloWorld.Models;*@
 @{
     Layout = null;
 }
@@ -18,19 +20,47 @@
         @*<form action="Submit" method="post">*@
         @using (Html.BeginForm("Submit", "Customer", FormMethod.Post))
         {
-                    @*Customer Name <input name="CustomerName" type="text" value="@Model.CustomerName" /> <br />*@
-            <i> Customer Name </i>  @Html.TextBoxFor(m => m.CustomerName)
-                @Html.ValidationMessageFor(x => x.CustomerName)
-                    @*Customer Code <input name="CustomerCode" type="text" value="@Model.CustomerCode" /> <br />*@
-            <i> Customer Code </i> @Html.TextBoxFor(m => m.CustomerCode)
-                @Html.ValidationMessageFor(x => x.CustomerCode)
-                    @*Customer Name <input name="txtCustomerName" type="text" /> <br />
-                    Customer Code <input name="txtCustomerCode" type="text" /> <br />*@
+            @*Customer Name <input name="txtCustomerName" type="text" /> <br />
+            Customer Code <input name="txtCustomerCode" type="text" /> <br />*@
+
+            @*Customer Name <input name="CustomerName" type="text" value="@Model.CustomerName" /> <br />*@
+            @*Customer Code <input name="CustomerCode" type@*="text" value="@Model.CustomerCode" /> <br />*@
+
+            @*<i> Customer Name </i> @Html.TextBoxFor(m => m.CustomerName)
+            @Html.ValidationMessageFor(x => x.CustomerName)*@
+            @*<i> Customer Code </i> @Html.TextBoxFor(m => m.CustomerCode)
+            @Html.ValidationMessageFor(x => x.CustomerCode)*@
+
+            <i> Customer Name </i> @Html.TextBoxFor(m => m.customer.CustomerName)
+            @Html.ValidationMessageFor(x => x.customer.CustomerName)
+            <i> Customer Code </i> @Html.TextBoxFor(m => m.customer.CustomerCode)
+            @Html.ValidationMessageFor(x => x.customer.CustomerCode)
+
             <input id="Submit1" type="submit" value="submit" />
         }
+        <br />
+        @*Added this table in DisplayCustomer by making it as a partial view as this grid code was repeated in SeachCustomer as well as EnterCustomer*@
+        @*<table>
+        <tr>
+            <td>Customer Code</td>
+            <td>Customer Name</td>
+        </tr>
+        @*Now Model or ViewModel has two kinds of objects inside it: 1) customer 2) customers collections *@
+        @*to display the grid*@
+        @*@foreach (Customer o in Model.customers)
+        {
+            <tr>
+                <td>@o.CustomerCode</td>
+                <td>@o.CustomerName</td>
+            </tr>
+        }*@
+        @*</table>*@
 
-            @*</form>*@
-            @*@Html.ValidationSummary()*@
+        @*Calling partial view DisplayCustomer to display grid*@
+        @Html.Partial("DisplayCustomers", Model)
+
+        @*</form>*@
+        @*@Html.ValidationSummary()*@
     </div>
 </body>
 </html>
