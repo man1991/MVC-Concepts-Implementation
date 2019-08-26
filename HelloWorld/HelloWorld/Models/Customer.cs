@@ -6,10 +6,14 @@ using System.Web;
 
 namespace HelloWorld.Models
 {
+    /// <summary>
+    /// Entity Framework always requires keys
+    /// </summary>
     public class Customer
     {
         [Required]
         [RegularExpression("^[A-Z]{3,3}[0-9]{4,4}$")]
+        [Key]
         public string CustomerCode { get; set; }
 
         [Required]

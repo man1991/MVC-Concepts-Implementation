@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HelloWorld.Models;
+using HelloWorld.DAL;
+
 namespace HelloWorld.Controllers
 {
     //public class CustomerBinder : IModelBinder
@@ -41,18 +43,23 @@ namespace HelloWorld.Controllers
             return View("EnterCustomer", new Customer());
         }
 
-        public ActionResult Submit(Customer obj)
+        public ActionResult Submit(Customer obj)//Customer class represents middle layer
         //public ActionResult Submit([ModelBinder(typeof(CustomerBinder))]
         //    Customer obj)//In case name of textbox i.e. UI and property name of model class are same than we can dirctly put object like this and 
         //                                        //Request.Form is done directly by MVC framework itself
         {
             if(ModelState.IsValid)
             {
+                //insert the customer object to database using Entity framework DAL
+                CustomerDAL customerDAL = new CustomerDAL();
+                customerDAL.Customers.Add(obj);//in-memory commit
+                customerDAL.SaveChanges();//physical commit to database
+
                 return View("Customer", obj);
             }
             else
             {
-                return View("EnterCustomer", obj);
+                return View("EnterCustomer", obj);//EnterCustomer is a UI
             }
             //Customer obj = new Customer();
             //obj.CustomerCode = Request.Form["CustomerCode"];
