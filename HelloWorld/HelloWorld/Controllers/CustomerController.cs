@@ -37,7 +37,15 @@ namespace HelloWorld.Controllers
                     CustomerCode = "1001",
                     CustomerName = "Manish"
                 };
-            return View("Customer",obj);
+            //return View("Customer", obj);
+            if (Request.QueryString["Type"] == "HTML")
+            {
+                return View("Customer", obj);
+            }
+            else
+            {
+                return Json(obj, JsonRequestBehavior.AllowGet);
+            }
         }
         public ActionResult Enter()
         {
